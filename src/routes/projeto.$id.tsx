@@ -63,37 +63,39 @@ function ProjectDetailsPage() {
       <div className="mx-auto grid max-w-[1600px] gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1fr_400px]">
         {/* Info */}
         <div className="space-y-8">
-          {gallery.length > 1 && (
-            <div>
-              <h2 className="font-display text-xl font-semibold">Galeria do projeto</h2>
-              <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-card/40 shadow-card">
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={gallery[activeImage] ?? project.image}
-                    alt={`${project.title} ${activeImage + 1}`}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-              <div className="scrollbar-hide mt-3 flex gap-3 overflow-x-auto pb-2">
-                {gallery.map((image, index) => (
-                  <button
-                    key={`${project.id}-${index}`}
-                    type="button"
-                    onClick={() => setActiveImage(index)}
-                    className={`overflow-hidden rounded-xl border transition ${
-                      activeImage === index
-                        ? "border-[var(--gold)] shadow-glow"
-                        : "border-border hover:border-[var(--gold)]/40"
-                    }`}
-                    aria-label={`Ver imagem ${index + 1} do projeto`}
-                  >
-                    <img src={image} alt="" className="h-20 w-28 object-cover sm:h-24 sm:w-36" />
-                  </button>
-                ))}
+          <div>
+            <h2 className="font-display text-xl font-semibold">Galeria do projeto</h2>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-card/40 shadow-card">
+              <div className="aspect-[16/10] overflow-hidden">
+                <img
+                  src={gallery[activeImage] ?? project.image}
+                  alt={`${project.title} ${activeImage + 1}`}
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
-          )}
+            <div className="scrollbar-hide mt-3 flex gap-3 overflow-x-auto pb-2">
+              {gallery.map((image, index) => (
+                <button
+                  key={`${project.id}-${index}`}
+                  type="button"
+                  onClick={() => setActiveImage(index)}
+                  className={`overflow-hidden rounded-xl border transition ${
+                    activeImage === index
+                      ? "border-[var(--gold)] shadow-glow"
+                      : "border-border hover:border-[var(--gold)]/40"
+                  }`}
+                  aria-label={`Ver imagem ${index + 1} do projeto`}
+                >
+                  <img
+                    src={image}
+                    alt=""
+                    className="h-20 w-28 object-cover sm:h-24 sm:w-36"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             <Stat icon={<Home className="h-4 w-4" />} label="Tipo" value={project.type} />
